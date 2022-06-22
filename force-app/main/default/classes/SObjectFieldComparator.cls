@@ -20,6 +20,14 @@ public with sharing class SObjectFieldComparator extends CustomComparator {
             result = compareNumbers((Integer)sobj1.get(field), (Integer)sobj2.get(field));
         } else if (fieldType == DisplayType.DOUBLE) {
             result = compareNumbers((Double)sobj1.get(field), (Double)sobj2.get(field));
+        } else if (fieldType == DisplayType.DATE) {
+            result = compareDates((Date)sobj1.get(field), (Date)sobj2.get(field));
+        } else if (fieldType == DisplayType.DATETIME) {
+            result = compareDateTimes((Datetime)sobj1.get(field), (Datetime)sobj2.get(field));
+        } else if (fieldType == DisplayType.STRING) {
+            result = compareStrings((String)sobj1.get(field), (String)sobj2.get(field));
+        } else {
+            throw new CustomComparatorException();
         }
         return applyDirection(result);
     }

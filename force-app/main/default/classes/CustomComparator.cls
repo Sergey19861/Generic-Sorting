@@ -24,7 +24,23 @@ public abstract class CustomComparator {
           return 0;
      }
 
+     protected Integer compareDates(Date date1, Date date2) {
+          if (date1 > date2) return 1;
+          if (date1 < date2) return -1;
+          return 0;
+     }
+
+     protected Integer compareDateTimes(Datetime date1, Datetime date2) {
+          if (date1 > date2) return 1;
+          if (date1 < date2) return -1;
+          return 0;
+     }
+
      protected Integer applyDirection(Integer compareResult) {
           return sortingDirection == SortDirection.DESCENDING ? compareResult * -1 : compareResult;
+     }
+
+     public class CustomComparatorException extends Exception {
+
      }
 }
