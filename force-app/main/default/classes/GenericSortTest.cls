@@ -17,14 +17,13 @@ private class GenericSortTest {
         };
 
         new GenericSort()
-                .addComparator(new PersonComparator('firstName', 1))
-                .addComparator(new PersonComparator('lastName', 1))
-                .addComparator(new PersonComparator('gender', 1))
+                .addComparator(new PersonComparator('firstName', SortDirection.ASCENDING))
+                .addComparator(new PersonComparator('lastName', SortDirection.ASCENDING))
+                .addComparator(new PersonComparator('gender', SortDirection.DESCENDING))
                 .sort(persons);
 
         System.assertEquals(persons[0].firstName, 'Alex');
         System.assertEquals(persons[0].lastName, 'Aleksandro');
-        System.assertEquals(persons[1].gender.name(), Gender.WOMAN.name());
-        //add Enum
+        System.assertEquals(persons[0].gender.name(), Gender.WOMAN.name());
     }
 }

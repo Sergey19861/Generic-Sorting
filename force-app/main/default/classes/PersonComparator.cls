@@ -5,9 +5,9 @@
 public with sharing class PersonComparator implements CustomComparator {
 
     private String fieldName;
-    private Integer sortDirection;
+    private SortDirection sortDirection;
 
-    public PersonComparator(String fieldName, Integer sortDirection) {
+    public PersonComparator(String fieldName, SortDirection sortDirection) {
         this.fieldName = fieldName;
         this.sortDirection = sortDirection;
     }
@@ -29,7 +29,10 @@ public with sharing class PersonComparator implements CustomComparator {
             else if (person1.gender.name() == person2.gender.name()) result = 0;
             else result = -1;
         }
-        return result * sortDirection;
+
+        if (sortDirection.name() == 'DESCENDING') return result * -1;
+
+        return result;
     }
 
 }
