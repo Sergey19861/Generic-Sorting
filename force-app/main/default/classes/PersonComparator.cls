@@ -1,0 +1,27 @@
+/**
+ * Created by Sergey Krivorotov.
+ */
+
+public with sharing class PersonComparator implements CustomComparator {
+
+    private String fieldName;
+    private Integer sortDirection;
+
+    public PersonComparator(String fieldName, Integer sortDirection) {
+        this.fieldName = fieldName;
+        this.sortDirection = sortDirection;
+    }
+//TO DO add sortDirection
+    public Integer compare(Object obj1, Object obj2) {
+        Person person1 = (Person) obj1;
+        Person person2 = (Person) obj2;
+        Integer result;
+        if(this.fieldName == 'firstName') {
+            if (person1.firstName > person2.firstName) result = 1;
+            else if (person1.firstName == person2.firstName) result = 0;
+            else result = -1;
+        }
+        return result * sortDirection;
+    }
+
+}
