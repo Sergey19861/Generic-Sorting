@@ -2,7 +2,29 @@
  * Created by Sergey Krivorotov.
  */
 
-public interface CustomComparator {
+public abstract class CustomComparator {
 
-     Integer compare(Object obj1, Object obj2);
+     private SortDirection sortingDirection;
+
+     public CustomComparator(SortDirection sortDirection) {
+          this.sortingDirection = sortDirection;
+     }
+
+     public abstract Integer compare(Object obj1, Object obj2);
+
+     protected Integer compareStrings(String str1, String str2) {
+          if (str1 > str2) return 1;
+          if (str1 < str2) return -1;
+          return 0;
+     }
+
+     protected Integer compareNumbers(Decimal num1, Decimal num2) {
+          if (num1 > num2) return 1;
+          if (num1 < num2) return -1;
+          return 0;
+     }
+
+     protected Integer applyDirection(Integer compareResult) {
+          return sortingDirection == SortDirection.DESCENDING ? compareResult * -1 : compareResult;
+     }
 }
