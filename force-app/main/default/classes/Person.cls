@@ -5,13 +5,13 @@
 public with sharing class Person {
     public String firstName;
     public String lastName;
-    public String gender;
+    public Gender gender;
     public Integer age;
 
     public Person(
             String firstName,
             String lastName,
-            String gender,
+            Gender gender,
             Integer age
     ) {
         this.firstName = firstName;

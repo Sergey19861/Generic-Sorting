@@ -8,19 +8,23 @@ private class GenericSortTest {
     @IsTest
     static void testBehavior() {
         List<Person> persons = new List<Person> {
-                new Person('Sergey', 'Ivanov', 'm', 25),
-                new Person('Alex', 'Petrov', 'm', 32),
-                new Person('Egor', 'Gorbuniv', 'm', 15),
-                new Person('Viktor', 'Ivanov', 'm', 26)
+                new Person('Sergey', 'Ivanov', Gender.MAN, 25),
+                new Person('Alex', 'Petrov', Gender.MAN, 32),
+                new Person('Egor', 'Gorbuniv', Gender.MAN, 15),
+                new Person('Viktor', 'Ivanov', Gender.MAN, 26),
+                new Person('Alex', 'Aleksandro', Gender.MAN, 26),
+                new Person('Alex', 'Aleksandro', Gender.WOMAN, 26)
         };
 
         new GenericSort()
                 .addComparator(new PersonComparator('firstName', 1))
                 .addComparator(new PersonComparator('lastName', 1))
+                .addComparator(new PersonComparator('gender', 1))
                 .sort(persons);
 
         System.assertEquals(persons[0].firstName, 'Alex');
-
+        System.assertEquals(persons[0].lastName, 'Aleksandro');
+        System.assertEquals(persons[1].gender.name(), Gender.WOMAN.name());
         //add Enum
     }
 }
