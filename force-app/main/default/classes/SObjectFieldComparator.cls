@@ -1,7 +1,7 @@
 /**
  * Created by Sergey Krivorotov.
  *
- * Compare SObject by fields defined in constructor.
+ * Compare SObjects by field defined in constructor.
  * Supported types: Date, String, Integer, Double, DateTime data types.
  */
 
