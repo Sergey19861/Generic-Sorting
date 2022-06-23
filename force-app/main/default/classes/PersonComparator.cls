@@ -1,5 +1,7 @@
 /**
  * Created by Sergey Krivorotov.
+ *
+ * Compare Person by field defined in constructor.
  */
 
 public with sharing class PersonComparator extends CustomComparator {

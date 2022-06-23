@@ -7,50 +7,50 @@ private class GenericSortTest {
 
     @TestSetup
     static void setup() {
-        List<Contact> contacts = new List<Contact>();
-        contacts.add(new Contact(
-                LastName = 'Safonov',
-                Birthdate = Date.newInstance(1996, 12, 12),
-                Age__c = 26,
-                Weight__c = 104.5,
-                DoNotCall = true
-        ));
-        contacts.add(new Contact(
-                LastName = 'Krivorotov',
-                Birthdate = Date.newInstance(1986, 12, 12),
-                Age__c = 36,
-                Weight__c = 84.5,
-                DoNotCall = false
-        ));
-        contacts.add(new Contact(
-                LastName = 'Morozov',
-                Birthdate = Date.newInstance(1986, 12, 12),
-                Age__c = 38,
-                Weight__c = 104.5,
-                DoNotCall = true
-        ));
-        contacts.add(new Contact(
-                LastName = 'Nikitin',
-                Birthdate = Date.newInstance(1984, 12, 12),
-                Age__c = 38,
-                Weight__c = 80.45,
-                DoNotCall = false
-        ));
-        contacts.add(new Contact(
-                LastName = 'Makarov',
-                Birthdate = Date.newInstance(1984, 12, 12),
-                Age__c = 36,
-                Weight__c = 104.5,
-                DoNotCall = true
-        ));
-        contacts.add(new Contact(
-                LastName = 'Safonov',
-                Birthdate = Date.newInstance(1984, 12, 12),
-                Age__c = 36,
-                Weight__c = 74.5,
-                DoNotCall = false
-        ));
-            insert contacts;
+        insert new List<Contact>{
+                new Contact(
+                        LastName = 'Safonov',
+                        Birthdate = Date.newInstance(1996, 12, 12),
+                        Age__c = 26,
+                        Weight__c = 104.5,
+                        DoNotCall = true
+                ),
+                new Contact(
+                        LastName = 'Krivorotov',
+                        Birthdate = Date.newInstance(1986, 12, 12),
+                        Age__c = 36,
+                        Weight__c = 84.5,
+                        DoNotCall = false
+                ),
+                new Contact(
+                        LastName = 'Morozov',
+                        Birthdate = Date.newInstance(1986, 12, 12),
+                        Age__c = 38,
+                        Weight__c = 104.5,
+                        DoNotCall = true
+                ),
+                new Contact(
+                        LastName = 'Nikitin',
+                        Birthdate = Date.newInstance(1984, 12, 12),
+                        Age__c = 38,
+                        Weight__c = 80.45,
+                        DoNotCall = false
+                ),
+                new Contact(
+                        LastName = 'Makarov',
+                        Birthdate = Date.newInstance(1984, 12, 12),
+                        Age__c = 36,
+                        Weight__c = 104.5,
+                        DoNotCall = true
+                ),
+                new Contact(
+                        LastName = 'Safonov',
+                        Birthdate = Date.newInstance(1984, 12, 12),
+                        Age__c = 36,
+                        Weight__c = 74.5,
+                        DoNotCall = false
+                )
+        };
     }
 
     @IsTest
@@ -65,7 +65,8 @@ private class GenericSortTest {
         } catch (CustomComparator.CustomComparatorException e) {
             errorMessage = e.getMessage();
         }
-        System.assert(errorMessage.length() > 0);
+        System.assert(errorMessage.length() > 0, 'Must be thrown exception');
+        System.assert(errorMessage.contains('Unsupported Data Type'), 'Wrong exception message');
     }
 
     @IsTest
@@ -125,12 +126,12 @@ private class GenericSortTest {
     @IsTest
     static void testYoungPersonsFirst() {
         List<Person> persons = new List<Person>{
-                new Person('Petr','Avakov',Gender.MAN,18),
-                new Person('Oleg','Ivanov',Gender.MAN,35),
-                new Person('Olesya','Petrova',Gender.WOMAN,16),
-                new Person('Olesya','Petrova',Gender.WOMAN,26),
-                new Person('Oleg','Ivanovich',Gender.MAN,16),
-                new Person('Oleg','Ivanov',Gender.MAN,17)
+                new Person('Petr', 'Avakov', Gender.MAN, 18),
+                new Person('Oleg', 'Ivanov', Gender.MAN, 35),
+                new Person('Olesya', 'Petrova', Gender.WOMAN, 16),
+                new Person('Olesya', 'Petrova', Gender.WOMAN, 26),
+                new Person('Oleg', 'Ivanovich', Gender.MAN, 16),
+                new Person('Oleg', 'Ivanov', Gender.MAN, 17)
         };
         new GenericSort()
                 .addComparator(new PersonComparator('age', SortDirection.ASCENDING))
@@ -150,12 +151,12 @@ private class GenericSortTest {
     @IsTest
     static void testMenFirst() {
         List<Person> persons = new List<Person>{
-                new Person('Petr','Avakov',Gender.MAN,18),
-                new Person('Oleg','Ivanov',Gender.MAN,35),
-                new Person('Olesya','Petrova',Gender.WOMAN,16),
-                new Person('Olesya','Petrova',Gender.WOMAN,26),
-                new Person('Oleg','Ivanovich',Gender.MAN,16),
-                new Person('Oleg','Ivanov',Gender.MAN,17)
+                new Person('Petr', 'Avakov', Gender.MAN, 18),
+                new Person('Oleg', 'Ivanov', Gender.MAN, 35),
+                new Person('Olesya', 'Petrova', Gender.WOMAN, 16),
+                new Person('Olesya', 'Petrova', Gender.WOMAN, 26),
+                new Person('Oleg', 'Ivanovich', Gender.MAN, 16),
+                new Person('Oleg', 'Ivanov', Gender.MAN, 17)
         };
         new GenericSort()
                 .addComparator(new PersonComparator('gender', SortDirection.ASCENDING))

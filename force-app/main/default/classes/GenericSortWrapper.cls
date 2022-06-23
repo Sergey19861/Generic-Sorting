@@ -1,6 +1,8 @@
 /**
  * Created by Sergey Krivorotov.
- */ //adapter
+ *
+ * Designed to adapt custom compare logic with built-in Salesforce sort logic.
+ */
 
 public with sharing class GenericSortWrapper implements Comparable {
 
@@ -14,7 +16,7 @@ public with sharing class GenericSortWrapper implements Comparable {
 
     public Integer compareTo(Object compareTo) {
         for (CustomComparator comparator : comparatorsList) {
-            Integer result = comparator.compare(obj, ((GenericSortWrapper)compareTo).obj);
+            Integer result = comparator.compare(obj, ((GenericSortWrapper) compareTo).obj);
             if (result != 0) return result;
         }
         return 0;
