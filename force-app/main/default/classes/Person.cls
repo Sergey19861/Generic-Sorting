@@ -1,5 +1,7 @@
 /**
  * Created by Sergey Krivorotov.
+ *
+ * Designed to store information about Person.
  */
 
 public with sharing class Person {
